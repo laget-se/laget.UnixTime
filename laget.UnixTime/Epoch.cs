@@ -33,7 +33,8 @@ namespace laget.UnixTime
                     datetime.Hour,
                     datetime.Minute,
                     datetime.Second,
-                    0)
+                    0,
+                    DateTimeKind.Utc)
                 .Subtract(StartsAt)
                 .TotalSeconds;
         }
