@@ -1,9 +1,11 @@
 ﻿using laget.UnixTime.Extensions;
+using laget.UnixTime.Tests.Helpers;
 using System;
 using Xunit;
 
 namespace laget.UnixTime.Tests.Extensions
 {
+    [UseCulture("sv-SE")]
     public class EpochExtensionsTests
     {
         [Fact]
