@@ -4,6 +4,11 @@ namespace laget.UnixTime.Extensions
 {
     public static class DateTimeExtensions
     {
+        /// <summary>
+        /// This method will converts the DateTime to an Epoch as Utc.
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
         public static Epoch ToEpoch(this DateTime dateTime)
         {
             if (dateTime.Kind == DateTimeKind.Utc)
@@ -12,6 +17,12 @@ namespace laget.UnixTime.Extensions
             return new Epoch(dateTime.ToUniversalTime());
         }
 
+        /// <summary>
+        /// This method will convert the datetime to provided DateTimeKind.
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <param name="kind"></param>
+        /// <returns></returns>
         public static Epoch ToEpoch(this DateTime datetime, DateTimeKind kind)
         {
             switch (kind)

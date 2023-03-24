@@ -243,7 +243,7 @@ namespace laget.UnixTime
         /// <returns></returns>
         public Epoch ToLocal()
         {
-            return DateTime.ToLocalTime().ToEpoch();
+            return new Epoch(DateTime.ToLocalTime());
         }
 
         public override int GetHashCode()

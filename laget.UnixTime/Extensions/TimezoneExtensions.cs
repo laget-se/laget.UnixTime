@@ -9,7 +9,7 @@ namespace laget.UnixTime.Extensions
             var datetime = epoch.DateTime;
             var converted = TimeZoneInfo.ConvertTime(datetime, timeZoneInfo);
 
-            return converted.ToEpoch();
+            return new Epoch(converted);
         }
     }
 }
