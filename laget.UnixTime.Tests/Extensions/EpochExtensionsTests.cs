@@ -118,5 +118,28 @@ namespace laget.UnixTime.Tests.Extensions
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void ShouldConvertEpochToDateTime()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            var expected = new DateTime(1970, 01, 02, 12, 30, 45);
+            var actual = epoch.ToDateTime();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldConvertEpochToSpecifiedTimeZone()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            const int expected = 135045;
+            var timezone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+            var actual = epoch.InTimezone(timezone);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

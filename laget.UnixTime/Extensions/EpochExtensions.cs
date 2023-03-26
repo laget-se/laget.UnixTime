@@ -4,6 +4,11 @@ namespace laget.UnixTime.Extensions
 {
     public static class EpochExtensions
     {
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the beginning of the current minute.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch BeginningOfMinute(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -18,6 +23,11 @@ namespace laget.UnixTime.Extensions
                     0));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the end of the current minute.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch EndOfMinute(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -32,6 +42,11 @@ namespace laget.UnixTime.Extensions
                     999));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the beginning of the current hour.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch BeginningOfHour(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -46,6 +61,11 @@ namespace laget.UnixTime.Extensions
                     0));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the end of the current hour.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch EndOfHour(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -60,6 +80,11 @@ namespace laget.UnixTime.Extensions
                     999));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the beginning of the current day.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch BeginningOfDay(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -74,6 +99,11 @@ namespace laget.UnixTime.Extensions
                     0));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the end of the current day.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch EndOfDay(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -88,6 +118,11 @@ namespace laget.UnixTime.Extensions
                     999));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the beginning of the current month.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch BeginningOfMonth(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -102,6 +137,11 @@ namespace laget.UnixTime.Extensions
                     0));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the end of the current month.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch EndOfMonth(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -116,6 +156,11 @@ namespace laget.UnixTime.Extensions
                     999));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the beginning of the current year.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch BeginningOfYear(this Epoch epoch)
         {
             var datetime = epoch.ToDateTime();
@@ -130,6 +175,11 @@ namespace laget.UnixTime.Extensions
                     0));
         }
 
+        /// <summary>
+        /// This method will return the original Epoch but with the timespan adjusted
+        /// to the end of the current year.
+        /// </summary>
+        /// <param name="epoch"></param>
         public static Epoch EndOfYear(this Epoch epoch)
         {
             var original = epoch.ToDateTime();
@@ -144,7 +194,26 @@ namespace laget.UnixTime.Extensions
                     999));
         }
 
+        /// <summary>
+        /// This method will convert the provided Epoch to a DateTime.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <returns></returns>
         public static DateTime ToDateTime(this Epoch epoch) =>
             new DateTime(1970, 01, 01).AddSeconds(epoch.Value);
+
+        /// <summary>
+        /// This method will return the current Epoch converted to a
+        /// time zone specific adjusted Epoch.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="timeZoneInfo"></param>
+        public static Epoch InTimezone(this Epoch epoch, TimeZoneInfo timeZoneInfo)
+        {
+            var datetime = epoch.DateTime;
+            var converted = TimeZoneInfo.ConvertTime(datetime, timeZoneInfo);
+
+            return new Epoch(converted);
+        }
     }
 }

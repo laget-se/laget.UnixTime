@@ -8,7 +8,6 @@ namespace laget.UnixTime.Extensions
         /// This method will converts the DateTime to an Epoch as Utc.
         /// </summary>
         /// <param name="dateTime"></param>
-        /// <returns></returns>
         public static Epoch ToEpoch(this DateTime dateTime)
         {
             if (dateTime.Kind == DateTimeKind.Utc)
@@ -22,7 +21,6 @@ namespace laget.UnixTime.Extensions
         /// </summary>
         /// <param name="datetime"></param>
         /// <param name="kind"></param>
-        /// <returns></returns>
         public static Epoch ToEpoch(this DateTime datetime, DateTimeKind kind)
         {
             switch (kind)
@@ -34,6 +32,19 @@ namespace laget.UnixTime.Extensions
                 case DateTimeKind.Utc:
                     return datetime.Kind == DateTimeKind.Utc ? new Epoch(datetime) : new Epoch(datetime.ToUniversalTime());
             }
+        }
+
+        /// <summary>
+        /// This method will return the current DateTime converted to a local
+        /// adjusted Epoch.
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <param name="timeZoneInfo"></param>
+        public static Epoch ToEpoch(this DateTime datetime, TimeZoneInfo timeZoneInfo)
+        {
+            var converted = TimeZoneInfo.ConvertTime(datetime, timeZoneInfo);
+
+            return new Epoch(converted);
         }
     }
 }
