@@ -9,6 +9,95 @@ namespace laget.UnixTime.Tests.Extensions
     public class EpochExtensionsTests
     {
         [Fact]
+        public void ShouldBeAbleToAddTimeSpan()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+            var timespan = new TimeSpan(1, 1, 1, 1);
+
+            var expected = new Epoch(new DateTime(1970, 01, 03, 13, 31, 46));
+            var actual = epoch.Add(timespan);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddSeconds()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            var expected = new Epoch(new DateTime(1970, 01, 02, 12, 30, 55));
+            var actual = epoch.AddSeconds(10);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddMinutes()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            var expected = new Epoch(new DateTime(1970, 01, 02, 12, 40, 45));
+            var actual = epoch.AddMinutes(10);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddHours()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            var expected = new Epoch(new DateTime(1970, 01, 02, 14, 30, 45));
+            var actual = epoch.AddHours(2);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddDays()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            var expected = new Epoch(new DateTime(1970, 01, 04, 12, 30, 45));
+            var actual = epoch.AddDays(2);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddMonths()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            var expected = new Epoch(new DateTime(1970, 02, 02, 12, 30, 45));
+            var actual = epoch.AddMonths(1);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddYears()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 02, 12, 30, 45));
+
+            var expected = new Epoch(new DateTime(1971, 01, 02, 12, 30, 45));
+            var actual = epoch.AddYears(1);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldBeAbleToAddYearsMonthsDaysHoursMinutesAndSeconds()
+        {
+            var epoch = new Epoch(new DateTime(1970, 01, 01, 0, 0, 0));
+
+            var expected = new Epoch(new DateTime(1971, 02, 02, 1, 10, 10));
+            var actual = epoch.AddYears(1).AddMonths(1).AddDays(1).AddHours(1).AddMinutes(10).AddSeconds(10);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void ShouldChangeTimeToBeginningOfMinute()
         {
             var epoch = new Epoch(new DateTime(1970, 01, 01, 12, 30, 45));

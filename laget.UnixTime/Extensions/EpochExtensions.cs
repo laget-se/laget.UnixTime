@@ -5,6 +5,147 @@ namespace laget.UnixTime.Extensions
     public static class EpochExtensions
     {
         /// <summary>
+        /// Returns a new `Epoch` that adds the specified TimeSpan to the
+        /// value of this instance.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An object whose value is the sum of the date and time
+        /// represented by this instance and the time interval represented
+        /// by value.
+        /// </returns>
+        public static Epoch Add(this Epoch epoch, TimeSpan value)
+        {
+            var datetime = epoch
+                .ToDateTime()
+                .Add(value);
+
+            return new Epoch(datetime);
+        }
+
+        /// <summary>
+        /// Returns a new `Epoch` that adds the specified number of seconds
+        /// to the value of this instance.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An object whose value is the sum of the date and time
+        /// represented by this instance and the number of seconds represented
+        /// by value.
+        /// </returns>
+        public static Epoch AddSeconds(this Epoch epoch, double value)
+        {
+            var datetime = epoch
+                .ToDateTime()
+                .AddSeconds(value);
+
+            return new Epoch(datetime);
+        }
+
+        /// <summary>
+        /// Returns a new `Epoch` that adds the specified number of minutes
+        /// to the value of this instance.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An object whose value is the sum of the date and time
+        /// represented by this instance and the number of minutes represented
+        /// by value.
+        /// </returns>
+        public static Epoch AddMinutes(this Epoch epoch, double value)
+        {
+            var datetime = epoch
+                .ToDateTime()
+                .AddMinutes(value);
+
+            return new Epoch(datetime);
+        }
+
+        /// <summary>
+        /// Returns a new `Epoch` that adds the specified number of hours
+        /// to the value of this instance.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An object whose value is the sum of the date and time
+        /// represented by this instance and the number of hours represented
+        /// by value.
+        /// </returns>
+        public static Epoch AddHours(this Epoch epoch, double value)
+        {
+            var datetime = epoch
+                .ToDateTime()
+                .AddHours(value);
+
+            return new Epoch(datetime);
+        }
+
+        /// <summary>
+        /// Returns a new `Epoch` that adds the specified number of days
+        /// to the value of this instance.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An object whose value is the sum of the date and time
+        /// represented by this instance and the number of days represented
+        /// by value.
+        /// </returns>
+        public static Epoch AddDays(this Epoch epoch, double value)
+        {
+            var datetime = epoch
+                .ToDateTime()
+                .AddDays(value);
+
+            return new Epoch(datetime);
+        }
+
+        /// <summary>
+        /// Returns a new `Epoch` that adds the specified number of months
+        /// to the value of this instance.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An object whose value is the sum of the date and time
+        /// represented by this instance and the number of months represented
+        /// by value.
+        /// </returns>
+        public static Epoch AddMonths(this Epoch epoch, int value)
+        {
+            var datetime = epoch
+                .ToDateTime()
+                .AddMonths(value);
+
+            return new Epoch(datetime);
+        }
+
+
+        /// <summary>
+        /// Returns a new `Epoch` that adds the specified number of years
+        /// to the value of this instance.
+        /// </summary>
+        /// <param name="epoch"></param>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An object whose value is the sum of the date and time
+        /// represented by this instance and the number of years represented
+        /// by value.
+        /// </returns>
+        public static Epoch AddYears(this Epoch epoch, int value)
+        {
+            var datetime = epoch
+                .ToDateTime()
+                .AddYears(value);
+
+            return new Epoch(datetime);
+        }
+
+        /// <summary>
         /// This method will return the original Epoch but with the timespan adjusted
         /// to the beginning of the current minute.
         /// </summary>
