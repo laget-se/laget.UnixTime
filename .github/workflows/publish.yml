@@ -1,4 +1,4 @@
-name: Publish
+﻿name: Publish
 
 on:
   push:
@@ -47,4 +47,4 @@ jobs:
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
         NUSPEC_FILE: laget.UnixTime.nuspec
         PROJECT_FILE_PATH: laget.UnixTime/laget.UnixTime.csproj
-        VERSION_STATIC: "1.0.${{github.run_number}}"
+        VERSION_STATIC: "1.1.${{github.run_number}}"

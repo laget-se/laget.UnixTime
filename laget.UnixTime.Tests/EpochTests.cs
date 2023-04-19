@@ -141,6 +141,11 @@ namespace laget.UnixTime.Tests
         {
             var datetime = new DateTime(2023, 01, 01, 15, 0, 0, DateTimeKind.Utc);
             var epoch = new Epoch(datetime).ToLocal();
+
+            var expected = new DateTime(2023, 01, 01, 16, 0, 0);
+            var actual = epoch.DateTime;
+
+            Assert.Equal(expected, actual);
         }
     }
 }
