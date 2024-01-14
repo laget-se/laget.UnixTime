@@ -1,9 +1,6 @@
 ﻿name: Publish
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch: {}
 
 jobs:
@@ -16,6 +13,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: |
+          8.0.x
           7.0.x
           6.0.x
           3.1.x
@@ -32,19 +30,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+    - uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build laget.UnixTime/laget.UnixTime.csproj --no-restore --configuration Release
-    - name: Publish
-      uses: laget-se/publish-nuget@v2.7.2
-      with:
-        INCLUDE_SYMBOLS: true
-        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-        NUSPEC_FILE: laget.UnixTime.nuspec
-        PROJECT_FILE_PATH: laget.UnixTime/laget.UnixTime.csproj
-        VERSION_STATIC: "1.1.${{github.run_number}}"
+        dotnet-version: 8.0.x
+    - run: dotnet restore
+    - run: dotnet build --configuration Release laget.UnixTime/laget.UnixTime.csproj
+    - run: dotnet pack --configuration Release laget.UnixTime/laget.UnixTime.csproj --no-build -p:Version=${{vars.VERSION}}.${{github.run_number}} -p:PackageVersion=${{vars.VERSION}}.${{github.run_number}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:NuspecFile=laget.UnixTime.nuspec
+    - run: dotnet nuget push laget.UnixTime/bin/Release/laget.UnixTime.${{vars.VERSION}}.${{github.run_number}}.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate

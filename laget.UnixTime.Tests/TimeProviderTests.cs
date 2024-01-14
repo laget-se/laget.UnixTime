@@ -1,5 +1,4 @@
-﻿using laget.UnixTime.Providers;
-using System;
+﻿using System;
 using Xunit;
 
 namespace laget.UnixTime.Tests
@@ -9,7 +8,7 @@ namespace laget.UnixTime.Tests
         [Fact]
         public void ShouldCreateSystemTimeProvider()
         {
-            var timeProvider = TimeProvider.System;
+            var timeProvider = Providers.TimeProvider.System;
 
             var expected = TimeZoneInfo.Local;
             var actual = timeProvider.TimeZoneInfo;
@@ -20,7 +19,7 @@ namespace laget.UnixTime.Tests
         [Fact]
         public void ShouldCreateUtcTimeProvider()
         {
-            var timeProvider = TimeProvider.Utc;
+            var timeProvider = Providers.TimeProvider.Utc;
 
             var expected = TimeZoneInfo.Utc;
             var actual = timeProvider.TimeZoneInfo;
@@ -31,7 +30,7 @@ namespace laget.UnixTime.Tests
         [Fact]
         public void ShouldCreateZoneTimeProvider()
         {
-            var timeProvider = TimeProvider.Timezone(TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"));
+            var timeProvider = Providers.TimeProvider.Timezone(TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"));
 
             var expected = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
             var actual = timeProvider.TimeZoneInfo;

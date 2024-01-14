@@ -18,8 +18,6 @@ namespace laget.UnixTime.Tests
         [Fact]
         public void ShouldCreateEpochFromDateTime()
         {
-            var epoch = Epoch.Now.ToLocal();
-
             Assert.Equal(0, (new Epoch(new DateTime(1970, 01, 01))).Value);
             Assert.Equal(1640995200, (new Epoch(new DateTime(2022, 01, 01))).Value);
             Assert.Equal(1672444800, (new Epoch(new DateTime(2022, 12, 31))).Value);
