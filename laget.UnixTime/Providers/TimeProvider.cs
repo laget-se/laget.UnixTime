@@ -23,7 +23,6 @@ namespace laget.UnixTime.Providers
             _timeZoneInfo = tz;
         }
 
-
         public Epoch Now()
         {
             var datetime = Epoch.Now.DateTime;
@@ -39,10 +38,12 @@ namespace laget.UnixTime.Providers
 
         public TimeZoneInfo TimeZoneInfo => _timeZoneInfo;
 
+        public static TimeProvider From(TimeZoneInfo timeZoneInfo)
+        {
+            return new TimeProvider(timeZoneInfo);
+        }
 
         public static TimeProvider System => new TimeProvider(TimeZoneInfo.Local);
-
-        public static TimeProvider Timezone(TimeZoneInfo timeZoneInfo) => new TimeProvider(timeZoneInfo);
 
         public static TimeProvider Utc => new TimeProvider(TimeZoneInfo.Utc);
     }

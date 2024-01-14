@@ -1,4 +1,5 @@
-﻿using System;
+﻿using laget.UnixTime.Extensions;
+using System;
 using Xunit;
 
 namespace laget.UnixTime.Tests
@@ -30,10 +31,45 @@ namespace laget.UnixTime.Tests
         [Fact]
         public void ShouldCreateZoneTimeProvider()
         {
-            var timeProvider = Providers.TimeProvider.Timezone(TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time"));
+            var timezone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+            var timeProvider = Providers.TimeProvider.From(timezone);
 
             var expected = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
             var actual = timeProvider.TimeZoneInfo;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldReturnCorrectUtcNow()
+        {
+            var timeProvider = Providers.TimeProvider.Utc;
+
+            var expected = Epoch.Now;
+            var actual = timeProvider.Now();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldReturnCorrectLocalNow()
+        {
+            var timeProvider = Providers.TimeProvider.System;
+
+            var expected = Epoch.Now.ToLocal();
+            var actual = timeProvider.Now();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldConvertEpochToSpecifiedTimeZone()
+        {
+            var timezone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+            var timeProvider = Providers.TimeProvider.Timezone(timezone);
+
+            var expected = DateTime.Now.ToEpoch(timezone);
+            var actual = timeProvider.Now();
 
             Assert.Equal(expected, actual);
         }
