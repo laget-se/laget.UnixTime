@@ -66,7 +66,7 @@ namespace laget.UnixTime.Tests
         public void ShouldConvertEpochToSpecifiedTimeZone()
         {
             var timezone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
-            var timeProvider = Providers.TimeProvider.Timezone(timezone);
+            var timeProvider = Providers.TimeProvider.From(timezone);
 
             var expected = DateTime.Now.ToEpoch(timezone);
             var actual = timeProvider.Now();
