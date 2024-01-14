@@ -135,6 +135,7 @@ namespace laget.UnixTime.Tests
         }
 
         [Fact]
+        [UseCulture("sv-SE")]
         public void ShouldReturnLocalEpochTimestamp()
         {
             var datetime = new DateTime(2023, 01, 01, 15, 0, 0, DateTimeKind.Utc);
