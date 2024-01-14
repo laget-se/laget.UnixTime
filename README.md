@@ -30,6 +30,23 @@ This method will return the provided value (`long`) as an UnixTime-epoch.
 
 This method will return the provided value (`DateTime`) as an UnixTime-epoch.
 
+### TimeProvider
+```c#
+var tp = TimeProvider.System;
+var epoch = tp.Now();
+```
+
+```c#
+var tp = TimeProvider.Utc;
+var epoch = tp.Now();
+```
+
+```c#
+var timezone = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
+var tp = TimeProvider.Timezone(timezone);
+var epoch = tp.Now();
+```
+
 ### Extensions
 We've provided a few ways to simplify the conversion of types that can be converted to a UnixTime-epoch value, such as `int`, `long`, and `DateTime`.
 

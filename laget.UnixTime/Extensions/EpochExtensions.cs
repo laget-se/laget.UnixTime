@@ -349,6 +349,7 @@ namespace laget.UnixTime.Extensions
         /// </summary>
         /// <param name="epoch"></param>
         /// <param name="timeZoneInfo"></param>
+        [Obsolete("This method is deprecated since version 1.1.x and will be removed in 2.x, please use UnixTime in conjunction with TimeProvider")]
         public static Epoch InTimezone(this Epoch epoch, TimeZoneInfo timeZoneInfo)
         {
             var datetime = epoch.DateTime;
